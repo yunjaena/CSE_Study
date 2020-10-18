@@ -34,9 +34,9 @@ fun main(): Unit = with(BufferedReader(InputStreamReader(System.`in`))) {
     }
 }
 
-fun treeSize(n: Int) = 1.shl(ceil(log2(n.toFloat())).toInt() + 1)
+private fun treeSize(n: Int) = 1.shl(ceil(log2(n.toFloat())).toInt() + 1)
 
-fun initTree(array: Array<Int>, tree: Array<Int>, node: Int, start: Int, end: Int): Int {
+private fun initTree(array: Array<Int>, tree: Array<Int>, node: Int, start: Int, end: Int): Int {
     if (start == end) {
         tree[node] = array[start]
         return tree[node]
@@ -46,7 +46,7 @@ fun initTree(array: Array<Int>, tree: Array<Int>, node: Int, start: Int, end: In
     return tree[node]
 }
 
-fun findMin(tree: Array<Int>, node: Int, start: Int, end: Int, left: Int, right: Int): Int {
+private fun findMin(tree: Array<Int>, node: Int, start: Int, end: Int, left: Int, right: Int): Int {
     if (left > end || right < start)
         return Int.MAX_VALUE
 

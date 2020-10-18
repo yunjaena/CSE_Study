@@ -44,6 +44,7 @@ fun initPrime(primeNumberList: ArrayList<Int>, limit: Int) {
     }
 }
 
+// TODO -> 투 포인터 적용하기
 fun count(primeNumberList: ArrayList<Int>, limit: Int): Int {
     var count = 0
     var isEnd = false
