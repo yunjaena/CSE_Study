@@ -5,7 +5,7 @@ import java.io.InputStreamReader
 import kotlin.math.ceil
 import kotlin.math.log2
 
-val MOD = 1_000_000_007
+private const val MOD = 1_000_000_007
 
 fun main(): Unit = with(BufferedReader(InputStreamReader(System.`in`))) {
     var split = readLine().split(" ")
