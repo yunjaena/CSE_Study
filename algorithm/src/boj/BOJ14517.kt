@@ -14,22 +14,34 @@ fun main(): Unit = with(BufferedReader(InputStreamReader(System.`in`))) {
             dp[i][j] = dp[i - 1][j]
         }
 
-        for (k in i until s.length) {
-            if (s[i] == s[k]) {
-                dp[i][k] += 1
-
-                for (l in k until s.length) {
-                    dp[i][k] += dp[i - 1][l + 1]
-                    dp[i][k] %= MOD
+        for (j in i until s.length) {
+            if (s[i] == s[j]) {
+                dp[i][j] += 1
+                // k = (1 ~ i - 1, j ~ len)까지 탐색한다. (현재 i, j에서 뻗어나갈 수 있는 모든 팰린드롬을 구해줌.)
+                for (k in j + 1 until s.length) {
+                    dp[i][j] += dp[i - 1][k]
+                    dp[i][j] %= MOD
+                    // print(dp, s.length)
                 }
             }
         }
+
     }
 
     for (i in 1..s.length)
         sum += dp[s.length][i]
 
     println("${sum.rem(MOD)}")
+}
+
+fun print(array: Array<IntArray>, len : Int) {
+    for (y in 0..len) {
+        for (x in 0..len) {
+            print("${array[y][x]} ")
+        }
+        println()
+    }
+    println()
 }
 
 /*
