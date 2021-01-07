@@ -12,7 +12,7 @@ fun main(): Unit = with(br) {
     }
 }
 
-fun solve(): Unit = with(br) {
+private fun solve(): Unit = with(br) {
     var st = StringTokenizer(readLine())
     val m = st.nextToken().toInt()
     val k = st.nextToken().toInt()
