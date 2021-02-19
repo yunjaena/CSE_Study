@@ -1,0 +1,17 @@
+{
+    "files.associations": {
+        "vector": "cpp",
+        "memory": "cpp",
+        "utility": "cpp",
+        "filesystem": "cpp",
+        "ios": "cpp",
+        "queue": "cpp",
+        "__bit_reference": "cpp",
+        "__string": "cpp",
+        "algorithm": "cpp",
+        "deque": "cpp",
+        "string": "cpp",
+        "type_traits": "cpp",
+        "*.tcc": "cpp"
+    }
+}
