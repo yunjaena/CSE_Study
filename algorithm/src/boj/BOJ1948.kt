@@ -82,4 +82,4 @@ private fun topologicalSort(startPoint: Int, endPoint: Int) {
 
 }
 
-private data class Edge(val node: Int, val time: Int)
+data class Edge(val node: Int, val time: Int)
