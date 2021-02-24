@@ -60,4 +60,4 @@ fun main(): Unit = with(BufferedReader(InputStreamReader(System.`in`))) {
 
 }
 
-data class Node(val x: Int, val y: Int, val distance: Int, val broken: Int)
+private data class Node(val x: Int, val y: Int, val distance: Int, val broken: Int)
