@@ -12,6 +12,10 @@
         "deque": "cpp",
         "string": "cpp",
         "type_traits": "cpp",
-        "*.tcc": "cpp"
+        "*.tcc": "cpp",
+        "iostream": "cpp",
+        "cstdlib": "cpp",
+        "ostream": "cpp",
+        "array": "cpp"
     }
 }
