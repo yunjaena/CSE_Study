@@ -41,13 +41,5 @@ int main()
     }
     
     cout << result;
-
-
-
-
-
-
-
-
     return 0;
 }
