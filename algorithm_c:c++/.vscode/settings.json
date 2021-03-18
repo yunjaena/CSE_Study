@@ -16,6 +16,12 @@
         "iostream": "cpp",
         "cstdlib": "cpp",
         "ostream": "cpp",
-        "array": "cpp"
+        "array": "cpp",
+        "tuple": "cpp",
+        "random": "cpp",
+        "limits": "cpp",
+        "string_view": "cpp",
+        "hash_map": "cpp",
+        "unordered_map": "cpp"
     }
 }
