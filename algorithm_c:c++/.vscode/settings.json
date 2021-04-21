@@ -22,6 +22,15 @@
         "limits": "cpp",
         "string_view": "cpp",
         "hash_map": "cpp",
-        "unordered_map": "cpp"
+        "unordered_map": "cpp",
+        "initializer_list": "cpp",
+        "istream": "cpp",
+        "functional": "cpp",
+        "atomic": "cpp",
+        "bit": "cpp",
+        "memory_resource": "cpp",
+        "fstream": "cpp",
+        "sstream": "cpp",
+        "stdexcept": "cpp"
     }
 }

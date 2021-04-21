@@ -1,0 +1,197 @@
+#include <iostream>
+#include <algorithm>
+#include <queue>
+#include <map>
+
+#define INT32_MAX 2147483647
+#define fastio                         \
+    ios_base ::sync_with_stdio(false); \
+    cin.tie(NULL);                     \
+    cout.tie(NULL);
+
+using namespace std;
+
+const int START_POINT = 9;
+const int EMPTY = 0;
+
+int sea[21][21];
+int dir[][2] = {{0, -1}, {-1, 0}, {1, 0}, {0, 1}};
+int mapSize;
+
+class Tuple
+{
+public:
+    int a;
+    int b;
+    int c;
+
+    Tuple(int a, int b, int c)
+    {
+        this->a = a;
+        this->b = b;
+        this->c = c;
+    }
+};
+
+class Shark
+{
+    int size = 2;
+    int currentPoint = 0;
+    int totalMove = 0;
+    int current_x;
+    int current_y;
+    int minMove = 0;
+    int next_x;
+    int next_y;
+
+public:
+    void setCurrentPosititon(int x, int y)
+    {
+        current_x = x;
+        current_y = y;
+    }
+
+    int getTotalMove()
+    {
+        return totalMove;
+    }
+
+    bool goToNextPoisition()
+    {
+        minMove = INT32_MAX;
+
+        queue<Tuple> q;
+        q.push(Tuple(current_x, current_y, 0));
+        bool isVisted[21][21] = {
+            false,
+        };
+        isVisted[current_y][current_x] = true;
+        vector<pair<int, int> > candidate;
+        int minMove = INT32_MAX;
+
+        while (!q.empty())
+        {
+            int cx = q.front().a;
+            int cy = q.front().b;
+            int cMove = q.front().c;
+            q.pop();
+
+            if (isPossibleToEat(sea[cy][cx]))
+            {
+                if (minMove >= cMove)
+                {
+                    candidate.push_back(make_pair(cx, cy));
+                    minMove = cMove;
+                }
+            }
+
+            for (int i = 0; i < 4; i++)
+            {
+                int nx = cx + dir[i][0];
+                int ny = cy + dir[i][1];
+                int nMove = cMove + 1;
+
+                if (isPossibleToPass(nx, ny) && !isVisted[ny][nx])
+                {
+                    q.push(Tuple(nx, ny, nMove));
+                    isVisted[ny][nx] = true;
+                }
+            }
+        }
+
+        if(!candidate.empty()){
+            sort(candidate.begin(), candidate.end(), compare);
+            current_x = candidate.front().first;
+            current_y = candidate.front().second;
+            eat(current_x, current_y);
+            totalMove += minMove;
+            return true;
+        }
+        return false;
+    }
+
+    static bool compare(const pair<int, int> &a, const pair<int, int> &b)
+    {
+        if (a.second == b.second)
+            return a.first < b.first;
+        return a.second < b.second;
+    }
+
+    void print()
+    {
+        cout << "----------------------------------------"
+             << "\n\n";
+        cout << current_x << " : " << current_y << "\tsize => " << size << "\tcurrentPoint =>" << currentPoint << "\ttotalMove =>" << totalMove << "\n";
+        for (int y = 0; y < mapSize; y++)
+        {
+            for (int x = 0; x < mapSize; x++)
+            {
+                if (current_x == x && current_y == y)
+                {
+                    cout << "\033[1;31m" << 9 << "\033[0m ";
+                }
+                else
+                    cout << sea[y][x] << " ";
+            }
+            cout << "\n";
+        }
+        cout << "----------------------------------------"
+             << "\n\n";
+    }
+
+    int simulation()
+    {
+        while (goToNextPoisition())
+        {
+        }
+        return totalMove;
+    }
+
+    bool isPossibleToEat(int size)
+    {
+        if (this->size > size && size > 0)
+            return true;
+        return false;
+    }
+
+    bool isPossibleToPass(int x, int y)
+    {
+        if (x < 0 || y < 0 || x >= mapSize || y >= mapSize || this->size < sea[y][x])
+            return false;
+        return true;
+    }
+
+    void eat(int x, int y)
+    {
+        sea[y][x] = 0;
+        currentPoint++;
+        if (size <= currentPoint)
+        {
+            size++;
+            currentPoint = 0;
+        }
+    }
+};
+
+int main()
+{
+    fastio;
+    Shark shark;
+    cin >> mapSize;
+    for (int y = 0; y < mapSize; y++)
+    {
+        for (int x = 0; x < mapSize; x++)
+        {
+            cin >> sea[y][x];
+            if (sea[y][x] == START_POINT)
+            {
+                shark.setCurrentPosititon(x, y);
+                sea[y][x] = 0;
+            }
+        }
+    }
+
+    cout << shark.simulation();
+
+    return 0;
+}
