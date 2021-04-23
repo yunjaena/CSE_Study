@@ -11,7 +11,7 @@
 using namespace std;
 
 int bottom[500005];
-int top[500005];
+int top[500005]; 
 int bottomSum[500005];
 int topSum[500005];
 int minVal;
