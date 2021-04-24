@@ -44,7 +44,7 @@ fun main() = with(BufferedReader(InputStreamReader(System.`in`))) {
     print(ans)
 }
 
-fun dfs(index : Int, isVisit : Boolean){
+private fun dfs(index : Int, isVisit : Boolean){
     if(isVisited[index]) return
     isVisited[index] = true
     for(i in domino[index]){
